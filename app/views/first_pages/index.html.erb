@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Home page</h1>
+<div>
+  <p>
+    <%= link_to 'House', houses_path %>
+  </p>
+  <p>
+    <%= link_to 'Complex Building', complex_buildings_path %>
+  </p>
+  <p>
+    <%= link_to 'Commecial Unit', commecial_units_path %>
+  </p>
+</div>
+
+-----------------
+<tbody>
+  <% @subjects.each do |subject| %>
+    <div>
+      <% if subject.class.name == 'House' %>
+        <h1>House</h1>
+        <tr>
+          <p>owner:<%= subject.owner %></p>
+          <p>address:<%= subject.address %></p>
+          <p>rooms:<%= subject.rooms %></p>
+          <p>sqmt:<%= subject.sqmt %></p>
+          <p>floors:<%= subject.floors %></p>
+          <p>air_cond:<%= subject.air_cond %></p>
+          <p>price:<%= subject.price %></p>
+          <%= image_tag subject.avatar_url if subject.avatar.present? %>
+          <div>
+            <%= form_tag buy_first_pages_path({id: subject.id, name: subject.class.name}) do %>
+              Send email <%= text_field_tag :email, params[:email] %>
+              and <%= submit_tag 'buy' %>
+            <% end %>
+          </div>
+          ------------
+        </tr>
+      <% end %>
+    </div>
+
+    <div>
+      <% if subject.class.name == 'ComplexBuilding' %>
+        <h1>Complex Buildings</h1>
+        <tr>
+          <p>owner:<%= subject.owner %></p>
+          <p>address:<%= subject.address %></p>
+          <p>units:<%= subject.units %></p>
+          <p>sqmt:<%= subject.sqmt %></p>
+          <p>price:<%= subject.price %></p>
+          <%= image_tag subject.avatar_url if subject.avatar.present? %>
+          <div>
+            <%= form_tag buy_first_pages_path({id: subject.id, name: subject.class.name}) do %>
+              Send email <%= text_field_tag :email, params[:email] %>
+              and <%= submit_tag 'buy' %>
+            <% end %>
+          </div>
+          ------------
+        </tr>
+      <% end %>
+    </div>
+
+    <div>
+      <% if subject.class.name == 'CommecialUnit' %>
+        <h1>Commecial Units</h1>
+        <tr>
+          <p>owner:<%= subject.owner %></p>
+          <p>address:<%= subject.address %></p>
+          <p>shops:<%= subject.shops %></p>
+          <p>sqmt:<%= subject.sqmt %></p>
+          <p>parking:<%= subject.parking %></p>
+          <p>price:<%= subject.price %></p>
+          <%= image_tag subject.avatar_url if subject.avatar.present? %>
+          <div>
+            <%= form_tag buy_first_pages_path({id: subject.id, name: subject.class.name}) do %>
+              Send email <%= text_field_tag :email, params[:email] %>
+              and <%= submit_tag 'buy' %>
+            <% end %>
+          </div>
+          ------------
+        </tr>
+      <% end %>
+    </div>
+  <% end %>
+</tbody>
+
+
+
+
+
